@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHA - Pseudocódigos</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            width: 45%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .diagram img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .button-container {
+            margin: 20px;
+        }
+        .download-button {
+            background-color: #ff4500;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .download-button:hover {
+            background-color: #cc3700;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejercicios AHA resuelto</h1>
+    
+    <div class="button-container">
+        <a href="talleraha.pdf" download>
+            <button class="download-button">Descargar PDF</button>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Ejemplo 1: Aplicación de AHA para optimizar la función Rosenbrock</h2>
+            <pre>
+Comenzar AHA_Rosenbrock()
+    Crear grupo inicial de soluciones al azar
+    Repetir hasta alcanzar condición de término
+        Calcular valor de la función Rosenbrock para cada solución
+        Usar heurísticas adaptativas para guiar el proceso
+        Elegir las soluciones con mejores resultados
+        Desarrollar nuevas soluciones con mutación y cruzamiento
+    Fin Repetir
+    Devolver las soluciones más óptimas
+Terminar
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Ejemplo 2: Ajuste de hiperparámetros en TensorFlow con AHA</h2>
+            <pre>
+Iniciar AHA_Hiperparámetros()
+    Establecer rango de valores para los hiperparámetros
+    Generar conjunto inicial de configuraciones
+    Seguir ejecutando mientras no se cumpla el límite
+        Probar cada configuración entrenando una red neuronal
+        Medir rendimiento usando el conjunto de validación
+        Aplicar AHA para refinar las configuraciones
+    Fin Seguir
+    Entregar la configuración con mejor desempeño
+Terminar                
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Ejemplo 3: Selección de características con AHA en un dataset de clasificación</h2>
+            <pre>
+Lanzar AHA_SeleccionCaracteristicas(dataset)
+    Formar subgrupos iniciales de características
+    Continuar hasta cumplir con el criterio de parada
+        Comprobar la precisión del modelo para cada subgrupo
+        Usar AHA para ajustar los subgrupos de características
+    Fin Continuar
+    Devolver el subconjunto de características más efectivo
+Terminar                
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Ejemplo 4: Diseño experimental en IA usando AHA</h2>
+            <pre>
+Iniciar Experimento_AHA()
+    Establecer el problema de optimización para IA
+    Definir indicadores de evaluación
+    Poner en marcha AHA para potenciar las soluciones
+    Contrastar resultados con enfoques tradicionales
+    Examinar el efecto de AHA en el rendimiento
+Terminar
+            </pre>
+        </div>
+    </div>
+    
+    <div class="diagram">
+        <h2>Diagrama de Flujo</h2>
+        <img src="diagramaAHA.svg" alt="Diagrama de Flujo">
+    </div>
+</body>
+</html>
+

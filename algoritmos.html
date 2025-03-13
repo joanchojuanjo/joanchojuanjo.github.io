@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algoritmos - Pseudocódigos y Diagramas</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            margin: 20px;
+        }
+        .download-button {
+            background-color: #ff4500;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .download-button:hover {
+            background-color: #cc3700;
+            transform: scale(1.05);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            width: 45%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .diagram img {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>Algoritmos - Pseudocódigos y Diagramas</h1>
+    
+    <div class="button-container">
+        <button class="download-button" onclick="window.open('talleralgoritmos.pdf')">Descargar PDF</button>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Suma de dos Números</h2>
+            <pre>
+Inicio
+    Escribir "Ingrese el primer número:"
+    Leer num1
+    Escribir "Ingrese el segundo número:"
+    Leer num2
+    suma - num1 + num2
+    Escribir "La suma es: ", suma
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Factorial de un Número</h2>
+            <pre>
+Inicio
+    Definir n, factorial Como Entero
+    Escribir "Ingrese un número: "
+    Leer n
+    factorial <- 1
+    Para i <- 1 Hasta n Hacer
+        factorial <- factorial * i
+    FinPara
+    Escribir "El factorial es: ", factorial
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Quick Sort</h2>
+            <pre>
+Inicio Quicksort(lista, inicio, fin)
+    Si inicio < fin Entonces
+        pivote <- Particionar(lista, inicio, fin)
+        Quicksort(lista, inicio, pivote - 1)
+        Quicksort(lista, pivote + 1, fin)
+    FinSi
+Fin
+
+Funcion Particionar(lista, inicio, fin)
+    pivote <- lista[fin]
+    i <- inicio - 1
+    Para j <- inicio hasta fin - 1 Hacer
+        Si lista[j] <= pivote Entonces
+            i <- i + 1
+            Intercambiar lista[i] con lista[j]
+        FinSi
+    FinPara
+    Intercambiar lista[i + 1] con lista[fin]
+    Retornar i + 1
+FinFuncion
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Merge Sort</h2>
+            <pre>
+Inicio Mergesort(lista)
+    Si longitud(lista) <= 1 Entonces
+        Retornar lista
+    FinSi
+    mitad <- longitud(lista) / 2
+    izquierda <- Mergesort(sublista(lista, 0, mitad))
+    derecha <- Mergesort(sublista(lista, mitad, longitud(lista)))
+    Retornar Mezclar(izquierda, derecha)
+Fin
+
+Funcion Mezclar(izquierda, derecha)
+    resultado <- []
+    Mientras izquierda no esté vacía Y derecha no esté vacía Hacer
+        Si izquierda[0] <= derecha[0] Entonces
+            Agregar izquierda[0] a resultado
+            Eliminar izquierda[0]
+        Sino
+            Agregar derecha[0] a resultado
+            Eliminar derecha[0]
+        FinSi
+    FinMientras
+    Concatenar resultado con izquierda y derecha
+    Retornar resultado
+FinFuncion
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Implementación de BFS</h2>
+            <pre>
+Inicio BFS(grafo, nodo_inicial)
+crear cola vacía
+agregar nodo_inicial a la cola
+marcar nodo_inicial como visitado
+Mientras la cola no esté vacía Hacer
+    nodo <- extraer de la cola
+    Para cada vecino en lista_adyacencia(nodo) Hacer
+        Si vecino no ha sido visitado Entonces
+            marcar vecino como visitado
+            agregar vecino a la cola
+        FinSi
+    FinPara
+FinMientras
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Implementación de DFS</h2>
+            <pre>
+Inicio DFS(grafo, nodo_inicial)
+    crear pila vacía
+    agregar nodo_inicial a la pila
+    marcar nodo_inicial como visitado
+    Mientras la pila no esté vacía Hacer
+        nodo <- extraer de la pila
+        Para cada vecino en lista_adyacencia(nodo) Hacer
+            Si vecino no ha sido visitado Entonces
+                marcar vecino como visitado
+                agregar vecino a la pila
+            FinSi
+        FinPara
+    FinMientras
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Busqueda Lineal y Binaria</h2>
+            <pre>
+Inicio BusquedaLineal(lista, objetivo)
+    Para i <- 0 hasta longitud(lista) - 1 Hacer
+        Si lista[i] == objetivo Entonces
+            Retornar i
+        FinSi
+    FinPara
+    Retornar -1
+Fin
+
+Inicio BusquedaBinaria(lista, objetivo)
+    inicio <- 0
+    fin <- longitud(lista) - 1
+    Mientras inicio <= fin Hacer
+        medio <- (inicio + fin) / 2
+        Si lista[medio] == objetivo Entonces
+            Retornar medio
+        Sino Si lista[medio] < objetivo Entonces
+            inicio <- medio + 1
+        Sino
+            fin <- medio - 1
+        FinSi
+    FinMientras
+    Retornar -1
+Fin
+            </pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Diagrama Suma</h2>
+            <img src="diagramasuma.drawio.png" alt="Diagrama 1">
+        </div>
+        <div class="box">
+            <h2>Diagrama Factorial</h2>
+            <img src="diagramafactorial.drawio.png" alt="Diagrama 2">
+        </div>
+        <div class="box">
+            <h2>Diagrama Quick Sort</h2>
+            <img src="diagramaqs.drawio.png" alt="Diagrama 3">
+        </div>
+        <div class="box">
+            <h2>Diagrama Merge Sort</h2>
+            <img src="diagramams.drawio.png" alt="Diagrama 4">
+        </div>
+        <div class="box">
+            <h2>Diagrama 5</h2>
+            <img src="diagramabfs.drawio.png" alt="Diagrama 5">
+        </div>
+        <div class="box">
+            <h2>Diagrama 6</h2>
+            <img src="diagramadfs.drawio.png" alt="Diagrama 6">
+        </div>
+        <div class="box">
+            <h2>Diagrama 7</h2>
+            <img src="diagramasbusquedas.drawio.png" alt="Diagrama 7">
+        </div>
+    </div>
+</body>
+</html>
