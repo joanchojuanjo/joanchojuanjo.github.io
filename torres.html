@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torres de Hanoi - Pseudocódigo y Juego</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            width: 60%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .game-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .game-box a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #ff4500;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .game-box a:hover {
+            background: #cc3700;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <h1>Torres de Hanoi - Pseudocódigo y Juego</h1>
+
+    <div class="container">
+        <div class="box">
+            <h2>Pseudocódigo</h2>
+            <pre>
+Inicio TorresDeHanoi(n, origen, destino, auxiliar)
+    Si n == 1 Entonces
+        Mover disco de origen a destino
+    Sino
+        TorresDeHanoi(n-1, origen, auxiliar, destino)
+        Mover disco de origen a destino
+        TorresDeHanoi(n-1, auxiliar, destino, origen)
+    FinSi
+Fin
+            </pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="box diagram">
+            <h2>Diagrama de Flujo</h2>
+            <img src="diagramahanoi.drawio.png" alt="Diagrama de Flujo">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="game-box">
+            <h2>Jugar Torres de Hanoi</h2>
+            <a href="https://www.mathsisfun.com/games/towerofhanoi.html" target="_blank">Ir al Juego</a>
+        </div>
+    </div>
+
+</body>
+</html>

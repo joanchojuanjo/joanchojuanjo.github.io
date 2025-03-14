@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcial de Estructura - Pseudocódigo, Diagrama y Grafo</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            margin: 20px;
+        }
+        .download-button {
+            background-color: #ff4500;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .download-button:hover {
+            background-color: #cc3700;
+            transform: scale(1.05);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            width: 60%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram img, .graph img {
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Parcial de Estructura - Pseudocódigo, Diagrama y Grafo</h1>
+
+    <div class="button-container">
+        <a href="parcial_estructura.pdf}.pdf" download>
+            <button class="download-button">Ver PDF</button>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Pseudocódigo</h2>
+            <pre>
+FUNCIÓN ConstruirGrafo(nodos, zonas_interferencia, viento):
+    grafo = GRAFO_VACIO()
+    
+    // Agregar nodos
+    PARA cada nodo en nodos:
+        grafo.agregarNodo(nodo)
+    
+    // Calcular y agregar aristas
+    PARA cada par (nodo_i, nodo_j) en nodos:
+        distancia = calcularDistanciaEuclidiana(nodo_i, nodo_j)
+        SI no hayInterseccionConZonas(nodo_i, nodo_j, zonas_interferencia):
+            factor_viento = calcularFactorViento(nodo_i, nodo_j, viento)
+            peso = distancia * (1 + factor_viento) * consumo_bateria_por_unidad
+            grafo.agregarArista(nodo_i, nodo_j, peso)
+    
+    RETORNAR grafo
+
+FUNCIÓN hayInterseccionConZonas(nodo_i, nodo_j, zonas):
+    linea = segmento(nodo_i, nodo_j)
+    PARA cada zona en zonas_interferencia:
+        SI linea.intersecta(zona):
+            RETORNAR VERDADERO
+RETORNAR FALSO
+            </pre>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="box diagram">
+            <h2>Diagrama de Flujo</h2>
+            <img src="diagramaparcial.drawio.png" alt="Diagrama de Flujo">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="box graph">
+            <h2>Grafo</h2>
+            <img src="grafo_parcial.png" alt="Grafo">
+        </div>
+    </div>
+
+</body>
+</html>

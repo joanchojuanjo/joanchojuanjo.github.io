@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grafos - Pseudocódigos y Diagramas</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            margin: 20px;
+        }
+        .download-button {
+            background-color: #ff4500;
+            color: white;
+            padding: 20px 40px;
+            font-size: 1.5em;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+            transition: background 0.3s ease, transform 0.2s;
+        }
+        .download-button:hover {
+            background-color: #cc3700;
+            transform: scale(1.05);
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .box {
+            background: white;
+            width: 45%;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        pre {
+            text-align: left;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .diagram img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Grafos - Pseudocódigos y Diagramas</h1>
+
+    <div class="button-container">
+        <a href="grafos.pdf" download>
+            <button class="download-button">Ver PDF</button>
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h2>Caso de uso 1</h2>
+            <pre>
+Inicio RutaMasCortaBFS(grafo, inicio, destino)
+    cola = nueva Cola()
+    visitados = nuevo Conjunto()
+    padres = nuevo Diccionario()  // Para reconstruir la ruta
+    cola.encolar(inicio)
+    visitados.agregar(inicio)
+    
+    Mientras cola no esté vacía Hacer
+        actual = cola.desencolar()
+        Si actual == destino Entonces
+            Retornar reconstruirRuta(padres, inicio, destino)
+        FinSi
+        Para cada vecino en grafo.vecinos(actual) Hacer
+            Si vecino no está en visitados Entonces
+                visitados.agregar(vecino)
+                padres[vecino] = actual
+                cola.encolar(vecino)
+            FinSi
+        FinPara
+    FinMientras
+    Retornar "No hay ruta"
+Fin
+
+reconstruirRuta(padres, inicio, destino)
+    ruta = nueva Lista()
+    actual = destino
+    Mientras actual no sea nulo Hacer
+        ruta.agregar(actual)
+        actual = padres[actual]
+    FinMientras
+    Invertir ruta
+    Retornar ruta
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Diagrama Caso de uso 1</h2>
+            <img src="diagramabfs.drawio.png" alt="Diagrama 1">
+        </div>
+        <div class="box">
+            <h2>Caso de uso 2</h2>
+            <pre>
+Inicio ComponentesConectados(grafo)
+    visitados = nuevo Conjunto()
+    componentes = nueva Lista()
+    
+    Para cada nodo en grafo.nodos Hacer
+        Si nodo no está en visitados Entonces
+            componente = nueva Lista()
+            DFS(grafo, nodo, visitados, componente)
+            componentes.agregar(componente)
+        FinSi
+    FinPara
+    Retornar componentes
+Fin
+
+DFS(grafo, nodo, visitados, componente)
+    visitados.agregar(nodo)
+    componente.agregar(nodo)
+    Para cada vecino en grafo.vecinos(nodo) Hacer
+        Si vecino no está en visitados Entonces
+            DFS(grafo, vecino, visitados, componente)
+        FinSi
+    FinPara
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Diagrama Caso de uso 2</h2>
+            <img src="diagramadfs.drawio.png" alt="Diagrama 2">
+        </div>
+        <div class="box">
+            <h2>Caso de uso 3</h2>
+            <pre>                
+Inicio DetectarCiclos(grafo)
+    visitados = nuevo Conjunto()
+    enPila = nuevo Conjunto()
+    
+    Para cada nodo en grafo.nodos Hacer
+        Si nodo no está en visitados Entonces
+            Si DFS_Ciclo(grafo, nodo, visitados, enPila) Entonces
+                Retornar "Ciclo detectado"
+            FinSi
+        FinSi
+    FinPara
+    Retornar "No hay ciclos"
+Fin
+
+DFS_Ciclo(grafo, nodo, visitados, enPila)
+    visitados.agregar(nodo)
+    enPila.agregar(nodo)
+    
+    Para cada vecino en grafo.vecinos(nodo) Hacer
+        Si vecino no está en visitados Entonces
+            Si DFS_Ciclo(grafo, vecino, visitados, enPila) Entonces
+                Retornar Verdadero
+            FinSi
+        Sino Si vecino está en enPila Entonces
+            Retornar Verdadero  // Ciclo detectado
+        FinSi
+    FinPara
+    
+    enPila.eliminar(nodo)
+    Retornar Falso
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Diagrama Caso de uso 3</h2>
+            <img src="diagramadfs.drawio.png" alt="Diagrama 3">
+        </div>
+        <div class="box">
+            <h2>Caso de uso 4</h2>
+            <pre>
+Inicio RecomendarAmigos(grafo, usuario)
+    amigos = grafo.vecinos(usuario)  // Amigos directos
+    candidatos = nuevo Diccionario()  // clave: persona, valor: amigos en común
+    
+    Para cada amigo en amigos Hacer
+        Para cada amigoDeAmigo en grafo.vecinos(amigo) Hacer
+            Si amigoDeAmigo no es usuario Y no está en amigos Entonces
+                Si amigoDeAmigo no está en candidatos Entonces
+                    candidatos[amigoDeAmigo] = 1
+                Sino
+                    candidatos[amigoDeAmigo] = candidatos[amigoDeAmigo] + 1
+                FinSi
+            FinSi
+        FinPara
+    FinPara
+    
+    Ordenar candidatos por valor descendente  // Más amigos en común primero
+    Retornar candidatos
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Diagrama Caso de uso 4</h2>
+            <img src="diagramaamigos.drawio.png" alt="Diagrama 4">
+        </div>
+        <div class="box">
+            <h2>Caso de uso 5</h2>
+            <pre>
+Inicio Dijkstra(grafo, inicio)
+    distancias = nuevo Diccionario()  // clave: nodo, valor: distancia
+    visitados = nuevo Conjunto()
+    padres = nuevo Diccionario()  // Para reconstruir rutas
+    colaPrioridad = nueva ColaPrioridad()  // Ordenada por distancia
+    
+    Para cada nodo en grafo.nodos Hacer
+        distancias[nodo] = Infinito
+    FinPara
+    distancias[inicio] = 0
+    colaPrioridad.insertar(inicio, 0)
+    
+    Mientras colaPrioridad no esté vacía Hacer
+        actual = colaPrioridad.extraerMinimo()
+        Si actual no está en visitados Entonces
+            visitados.agregar(actual)
+            Para cada vecino en grafo.vecinos(actual) Hacer
+                distanciaNueva = distancias[actual] + grafo.peso(actual, vecino)
+                Si distanciaNueva < distancias[vecino] Entonces
+                    distancias[vecino] = distanciaNueva
+                    padres[vecino] = actual
+                    colaPrioridad.insertar(vecino, distanciaNueva)
+                FinSi
+            FinPara
+        FinSi
+    FinMientras
+    Retornar distancias, padres
+Fin
+            </pre>
+        </div>
+        <div class="box">
+            <h2>Diagrama Caso de uso 5</h2>
+            <img src="diagramacaso5.drawio.png" alt="Diagrama 5">
+        </div>
+    </div>
+</body>
+</html>
